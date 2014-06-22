@@ -11,16 +11,13 @@ Note: You can ignore the results on screenshot. I did it by manually :)
 
 Just use the pip.
 
-    ```
     $ pip install worldcup
-    ```
 
 ### Usage
 
 If you run the `worldcup` directly, fetches and prints all matches.
 You can pass `today` or `current` options to filter matches.
 
-    ```
     $ worldcup today
 
      Brazil                         1 - 1                        Croatia
@@ -41,4 +38,3 @@ You can pass `today` or `current` options to filter matches.
      Chile                          3 - 1                      Australia
     --------------------------------------------------------------------
      ⚽  Played 4 days ago. Winner: Chile
-    ```
