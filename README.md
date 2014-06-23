@@ -2,6 +2,8 @@ World Cup results for hackers. Uses Soccer For Good API.
 
 http://softwareforgood.com/soccer-good/
 
+Data Source: http://worldcup.sfg.io/matches
+
 ![worldcup.py](http://i.imgur.com/DTUomdM.png)
 
 Note: You can ignore the results on screenshot. I did it by manually :)
@@ -19,6 +21,8 @@ Just use the pip.
 
 If you run the `worldcup` directly, fetches and prints all matches.
 You can pass `today` or `current` options to filter matches.
+
+Example 1:
 
     ```
     $ worldcup today
@@ -42,3 +46,45 @@ You can pass `today` or `current` options to filter matches.
     --------------------------------------------------------------------
      ⚽  Played 4 days ago. Winner: Chile
     ```
+
+Example 2:
+
+    ```
+
+    $ worldcup country bra
+
+      Brazil                         3 - 1                        Croatia
+    --------------------------------------------------------------------
+    ⚽  Played 10 days ago. Brazil won
+    
+
+     Brazil                         0 - 0                         Mexico
+    --------------------------------------------------------------------
+    ⚽  Played 5 days ago. Draw
+    
+
+     Cameroon                       0 - 0                         Brazil
+    --------------------------------------------------------------------
+    ⚽  Will be played 17 hours from now
+
+    ```
+ Example 3:
+
+    ```   
+    $ worldcup group 1
+    
+    Mexico 		| wins: 1 | losses: 0 | goals for: 1 | goals against: 0 | out? False
+    --------------------------------------------------------------------
+    
+
+    Brazil 		| wins: 1 | losses: 0 | goals for: 3 | goals against: 1 | out? False
+    --------------------------------------------------------------------
+    
+
+    Croatia 		| wins: 1 | losses: 1 | goals for: 5 | goals against: 3 | out? False
+    --------------------------------------------------------------------
+    
+
+    Cameroon 		| wins: 0 | losses: 2 | goals for: 0 | goals against: 5 | out? False
+    --------------------------------------------------------------------
+    '''
