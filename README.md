@@ -68,27 +68,6 @@ Example 2:
     ⚽  Will be played 17 hours from now
 
     ```
-Example 2:
-
-    ```
-
-    $ worldcup country bra
-
-      Brazil                         3 - 1                        Croatia
-    --------------------------------------------------------------------
-    ⚽  Played 10 days ago. Brazil won
-    
-
-     Brazil                         0 - 0                         Mexico
-    --------------------------------------------------------------------
-    ⚽  Played 5 days ago. Draw
-    
-
-     Cameroon                       0 - 0                         Brazil
-    --------------------------------------------------------------------
-    ⚽  Will be played 17 hours from now
-
-    ```
  Example 3:
 
     ```   
