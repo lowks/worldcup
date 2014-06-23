@@ -134,12 +134,15 @@ def fetch(endpoint):
     """
     Fetches match results by given endpoint
     """
-    url = "http://worldcup.sfg.io/matches/%(endpoint)s?by_date=ASC" % {
+    url = "http://worldcup.sfg.io/%(endpoint)s" % {
         "endpoint": endpoint
     }
+    print url
 
     data = urlopen(url).read().decode('utf-8')
+    #print data
     matches = json.loads(data)
+    #print matches
 
     for match in matches:
         if is_valid(match):
@@ -149,14 +152,18 @@ def fetch(endpoint):
 def main():
     colorama.init()
 
-    endpoint = ''.join(sys.argv[1:])
+    endpoint = 'matches/'+''.join(sys.argv[1:])
 
     # todo: use argument parser
-
+    
+    #if len(sys.argv)==1:
+        #endpoint = 'matches'
+	
+	
     if len(sys.argv) > 1:
         if (sys.argv[1].lower() == 'country'):
             endpoint = 'matches/country?fifa_code=%(country)s' % {
-                "country": sys.argv[2]
+                "country": sys.argv[2].upper()
             }
         elif (sys.argv[1].lower() == 'group'):
             endpoint = 'group_results'
