@@ -137,7 +137,7 @@ def fetch(endpoint):
     url = "http://worldcup.sfg.io/%(endpoint)s" % {
         "endpoint": endpoint
     }
-    print url
+    
 
     data = urlopen(url).read().decode('utf-8')
     #print data
