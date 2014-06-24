@@ -13,9 +13,7 @@ Note: You can ignore the results on screenshot. I did it by manually :)
 
 Just use the pip.
 
-    ```
     $ pip install worldcup
-    ```
 
 ### Usage
 
@@ -68,6 +66,7 @@ Example 2:
     ⚽  Will be played 17 hours from now
 
     ```
+
  Example 3:
 
     ```   
@@ -87,4 +86,3 @@ Example 2:
 
     Cameroon 		| wins: 0 | losses: 2 | goals for: 0 | goals against: 5 | out? False
     --------------------------------------------------------------------
-    '''
