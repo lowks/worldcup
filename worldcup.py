@@ -100,21 +100,25 @@ def prettify(match):
         colorama.Fore.WHITE + match_status
     )
 
+
 def group_list(country):
     """
     Lists a group member
     """
     return """
-    {:<5} \t\t| wins: {} | losses: {} | goals for: {} | goals against: {} | out? {}
+    {}{:<5} \t\t {}
+    wins: {} | losses: {} | goals for: {} | goals against: {} | out? {}
     {}
     """.format(
+        colorama.Fore.GREEN + colorama.Style.BRIGHT,
         country['country'],
+        colorama.Fore.WHITE + colorama.Style.BRIGHT,
         country['wins'],
         country['losses'],
         country['goals_for'],
         country['goals_against'],
         country['knocked_out'],
-        "-" * SCREEN_WIDTH
+        "-" * 81
     )
 
 
@@ -137,12 +141,9 @@ def fetch(endpoint):
     url = "http://worldcup.sfg.io/%(endpoint)s" % {
         "endpoint": endpoint
     }
-    
 
-    data = urlopen(url).read().decode('utf-8')
-    #print data
-    matches = json.loads(data)
-    #print matches
+    data = urlopen(url)
+    matches = json.load(data)
 
     for match in matches:
         if is_valid(match):
@@ -152,14 +153,10 @@ def fetch(endpoint):
 def main():
     colorama.init()
 
-    endpoint = 'matches/'+''.join(sys.argv[1:])
+    endpoint = 'matches/' + ''.join(sys.argv[1:])
 
     # todo: use argument parser
     
-    #if len(sys.argv)==1:
-        #endpoint = 'matches'
-	
-	
     if len(sys.argv) > 1:
         if (sys.argv[1].lower() == 'country'):
             endpoint = 'matches/country?fifa_code=%(country)s' % {
@@ -175,6 +172,7 @@ def main():
 
     for match in fetch(endpoint):
         print(prettify(match).encode('utf-8'))
+
 
 if __name__ == "__main__":
     main()
