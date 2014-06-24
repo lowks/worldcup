@@ -22,7 +22,7 @@ You can pass `today` or `current` options to filter matches.
 
 Example 1:
 
-    ```
+
     $ worldcup today
 
      Brazil                         1 - 1                        Croatia
@@ -43,11 +43,9 @@ Example 1:
      Chile                          3 - 1                      Australia
     --------------------------------------------------------------------
      ⚽  Played 4 days ago. Winner: Chile
-    ```
+
 
 Example 2:
-
-    ```
 
     $ worldcup country bra
 
@@ -65,11 +63,8 @@ Example 2:
     --------------------------------------------------------------------
     ⚽  Will be played 17 hours from now
 
-    ```
-
  Example 3:
 
-    ```   
     $ worldcup group 1
     
     Mexico 		| wins: 1 | losses: 0 | goals for: 1 | goals against: 0 | out? False
