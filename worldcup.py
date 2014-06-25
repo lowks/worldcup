@@ -128,8 +128,14 @@ def is_valid(match):
     """
     return (
         isinstance(match, dict) and
-        isinstance(match.get('home_team'), dict) or
-        isinstance(match.get('away_team'), dict) or
+        (
+            isinstance(match.get('home_team'), dict) and
+            match.get('home_team')['code'] != 'TBD'
+        ) and
+        (
+            isinstance(match.get('away_team'), dict) and
+            match.get('away_team')['code'] != 'TBD'
+        ) or
         isinstance(match.get('group_id'), int)
     )
 
