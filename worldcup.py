@@ -1,6 +1,9 @@
+#! /usr/bin/env python
+
 import sys
 import json
 import datetime
+import argparse
 
 import colorama
 import humanize
@@ -128,8 +131,14 @@ def is_valid(match):
     """
     return (
         isinstance(match, dict) and
-        isinstance(match.get('home_team'), dict) or
-        isinstance(match.get('away_team'), dict) or
+        (
+            isinstance(match.get('home_team'), dict) and
+            'goals' in match.get('home_team')
+        ) and
+        (
+            isinstance(match.get('away_team'), dict) and
+            'goals' in match.get('away_team')
+        ) or
         isinstance(match.get('group_id'), int)
     )
 
@@ -143,7 +152,7 @@ def fetch(endpoint):
     }
 
     data = urlopen(url)
-    matches = json.load(data)
+    matches = json.loads(data.read().decode("utf-8"))
 
     for match in matches:
         if is_valid(match):
@@ -152,26 +161,32 @@ def fetch(endpoint):
 
 def main():
     colorama.init()
-
-    endpoint = 'matches/' + ''.join(sys.argv[1:])
-
-    # todo: use argument parser
     
-    if len(sys.argv) > 1:
-        if (sys.argv[1].lower() == 'country'):
-            endpoint = 'matches/country?fifa_code=%(country)s' % {
-                "country": sys.argv[2].upper()
-            }
-        elif (sys.argv[1].lower() == 'group'):
-            endpoint = 'group_results'
-            group_id = int(sys.argv[2])
-            for match in fetch(endpoint):
-                if (match.get('group_id') == group_id):
-                    print group_list(match)
-            return
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-e', '--endpoint', default='', help="Set a " +\
+        "filter on matches to retrieve (current, today, tomorrow)")
+    parser.add_argument('-c', '--country', help="Filter matches to a " +\
+        "specific country code.")
+    parser.add_argument('-g', '--group', help="Filter matches to a " +\
+        "specific group.")
+    args = parser.parse_args()
+
+    endpoint = 'matches/' + args.endpoint
+    
+    if (args.country):
+        endpoint = 'matches/country?fifa_code=%(country)s' % {
+            "country": args.country.upper()
+        }
+    elif (args.group):
+        endpoint = 'group_results'
+        group_id = int(args.group)
+        for match in fetch(endpoint):
+            if (match.get('group_id') == group_id):
+                print(group_list(match))
+        return
 
     for match in fetch(endpoint):
-        print(prettify(match).encode('utf-8'))
+        print(prettify(match))
 
 
 if __name__ == "__main__":
