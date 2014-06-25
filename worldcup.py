@@ -143,7 +143,7 @@ def fetch(endpoint):
     }
 
     data = urlopen(url)
-    matches = json.load(data)
+    matches = json.loads(data.read().decode("utf-8"))
 
     for match in matches:
         if is_valid(match):
@@ -167,11 +167,11 @@ def main():
             group_id = int(sys.argv[2])
             for match in fetch(endpoint):
                 if (match.get('group_id') == group_id):
-                    print group_list(match)
+                    print(group_list(match))
             return
 
     for match in fetch(endpoint):
-        print(prettify(match).encode('utf-8'))
+        print(prettify(match))
 
 
 if __name__ == "__main__":
