@@ -130,11 +130,11 @@ def is_valid(match):
         isinstance(match, dict) and
         (
             isinstance(match.get('home_team'), dict) and
-            match.get('home_team')['code'] != 'TBD'
+            'goals' in match.get('home_team')
         ) and
         (
             isinstance(match.get('away_team'), dict) and
-            match.get('away_team')['code'] != 'TBD'
+            'goals' in match.get('away_team')
         ) or
         isinstance(match.get('group_id'), int)
     )
