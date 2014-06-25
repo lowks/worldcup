@@ -18,12 +18,12 @@ Just use the pip.
 ### Usage
 
 If you run the `worldcup` directly, fetches and prints all matches.
-You can pass `today` or `current` options to filter matches.
+You can filter matches by time, country or group with custom arguments.
 
 Example 1:
+`-e ENDPOINT` or `--endpoint ENDPOINT` (allowed: 'current' 'today' or 'tomorrow')
 
-
-    $ worldcup today
+    $ worldcup -e today
 
      Brazil                         1 - 1                        Croatia
     ------------------------o-------------------------------------------
@@ -46,8 +46,9 @@ Example 1:
 
 
 Example 2:
+`-c COUNTRY` or `--country COUNTRY`
 
-    $ worldcup country bra
+    $ worldcup -c bra
 
       Brazil                         3 - 1                        Croatia
     --------------------------------------------------------------------
@@ -63,9 +64,10 @@ Example 2:
     --------------------------------------------------------------------
     ⚽  Will be played 17 hours from now
 
- Example 3:
+Example 3:
+`-g GROUP` or `--group GROUP`
 
-    $ worldcup group 1
+    $ worldcup -g 1
     
     Mexico 		| wins: 1 | losses: 0 | goals for: 1 | goals against: 0 | out? False
     --------------------------------------------------------------------
