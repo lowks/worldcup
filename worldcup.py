@@ -174,12 +174,13 @@ def main():
 
     endpoint = 'matches/' + args.endpoint
     
-    if (args.country or args.endpoint.lower() == 'country' and args.options):
+    if (args.country \
+        or args.endpoint.lower() == 'country' and len(args.options)):
         endpoint = 'matches/country?fifa_code=%(country)s' % {
             "country": args.country.upper() if args.country \
                 else args.options[0].upper() 
         }
-    elif (args.group or args.endpoint.lower() == 'group' and args.options):
+    elif (args.group or args.endpoint.lower() == 'group' and len(args.options)):
         endpoint = 'group_results'
         group_id = int(args.group or args.options[0])
         for match in fetch(endpoint):
