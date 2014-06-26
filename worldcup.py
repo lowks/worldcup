@@ -163,7 +163,7 @@ def main():
     colorama.init()
     
     parser = argparse.ArgumentParser()
-    parser.add_argument('-e', '--endpoint', default='', help="Set a " +\
+    parser.add_argument('endpoint', nargs='?', default='', help="Set a " +\
         "filter on matches to retrieve (current, today, tomorrow)")
     parser.add_argument('-c', '--country', help="Filter matches to a " +\
         "specific country code.")
