@@ -163,23 +163,26 @@ def main():
     colorama.init()
     
     parser = argparse.ArgumentParser()
-    parser.add_argument('-e', '--endpoint', default='', help="Set a " +\
+    parser.add_argument('endpoint', nargs='?', default='', help="Set a " +\
         "filter on matches to retrieve (current, today, tomorrow)")
     parser.add_argument('-c', '--country', help="Filter matches to a " +\
         "specific country code.")
     parser.add_argument('-g', '--group', help="Filter matches to a " +\
         "specific group.")
+    parser.add_argument('options', nargs='*', default='')
     args = parser.parse_args()
 
     endpoint = 'matches/' + args.endpoint
     
-    if (args.country):
+    if (args.country \
+        or args.endpoint.lower() == 'country' and len(args.options)):
         endpoint = 'matches/country?fifa_code=%(country)s' % {
-            "country": args.country.upper()
+            "country": args.country.upper() if args.country \
+                else args.options[0].upper() 
         }
-    elif (args.group):
+    elif (args.group or args.endpoint.lower() == 'group' and len(args.options)):
         endpoint = 'group_results'
-        group_id = int(args.group)
+        group_id = int(args.group or args.options[0])
         for match in fetch(endpoint):
             if (match.get('group_id') == group_id):
                 print(group_list(match))

@@ -21,9 +21,9 @@ If you run the `worldcup` directly, fetches and prints all matches.
 You can filter matches by time, country or group with custom arguments.
 
 Example 1:
-`-e ENDPOINT` or `--endpoint ENDPOINT` (allowed: 'current' 'today' or 'tomorrow')
+`ENDPOINT` (allowed: 'current' 'today' or 'tomorrow')
 
-    $ worldcup -e today
+    $ worldcup today
 
      Brazil                         1 - 1                        Croatia
     ------------------------o-------------------------------------------
