@@ -5,6 +5,8 @@ setup(
     name='worldcup',
     version='1.0.3',
     author_email='fatiherikli@gmail.com',
+    author='fatiherikli',
+    url='https://github.com/fatiherikli/worldcup/',
     py_modules=['worldcup'],
     entry_points={
         'console_scripts': [
@@ -20,4 +22,5 @@ setup(
     classifiers=[
       'Environment :: Console'
     ],
+    description='World Cup results for hackers.',
 )
